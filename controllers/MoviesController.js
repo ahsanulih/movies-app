@@ -63,7 +63,8 @@ class MoviesController {
                 });
             })
             .then((ProductionHouses) => {
-                res.render('movieEditForm.ejs', { notif: notif.split(','), movie, ProductionHouses });
+                if (!notif) res.render('movieEditForm.ejs', { notif: null, movie, ProductionHouses });
+                else res.render('movieEditForm.ejs', { notif: notif.split(','), movie, ProductionHouses });
             })
             .catch((err) => {
                 res.send(err);
