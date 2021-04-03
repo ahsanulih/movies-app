@@ -1,0 +1,69 @@
+<%- include('partials/header', {title: 'Movies List'}) %>
+
+<nav class="navbar navbar-expand-sm bg-info navbar-dark justify-content-center">
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/production-houses">Production Houses</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="/movies">Movies</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/casts">Casts</a>
+        </li>
+    </ul>
+</nav>
+
+<h1 class="d-flex justify-content-center mt-5">Movies List</h1>
+
+<div class="d-flex justify-content-center mt-5">
+    <a href="/movies/add" class="btn btn-outline-success">Add movie</a>
+</div>
+
+<% if(notif) { %>
+    <div class="d-flex justify-content-center mt-3">
+        <p><%= notif %></p>
+    </div>
+<% } %>
+
+<div class="row justify-content-center mt-3">
+    <div class="col-auto">
+        <table class="table table-responsive table-bordered">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">Movie</th>
+                    <th scope="col">Released Year</th>
+                    <th scope="col">Genre</th>
+                    <th scope="col">Production House</th>
+                    <th scope="col">Rating</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for (let i = 0; i < movies.length; i++) { %>
+                <tr>
+                    <td><%= movies[i].name %></td>
+                    <td><%= movies[i].released_year %></td>
+                    <td><%= movies[i].genre %></td>
+                    <% if (movies[i].ProductionHouseId) { %>
+                        <td><%= movies[i].ProductionHouse.name_prodHouse %></td>
+                      <% } else { %>
+                        <td>unknown</td>
+                    <% } %>
+                    <td><%= movies[i].rating %></td>
+                    <td>
+                        <a href="/movies/<%= movies[i].id %>/edit" class="btn btn-outline-info">Edit</a>
+                        <a href="/movies/<%= movies[i].id %>/delete" class="btn btn-outline-info">Delete</a>
+                        <a href="/movies/<%= movies[i].id %>/add-cast" class="btn btn-outline-info">Add cast</a>
+                    </td>
+                </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<%- include('partials/footer.ejs') %>

@@ -1,0 +1,69 @@
+<%- include('partials/header', {title: 'Edit Movie Data'}) %>
+
+<h1 class="d-flex justify-content-center mt-5">Edit Movie Data</h1>
+
+<div class="d-flex justify-content-center mt-3">
+    <% if(notif){ 
+        for(let i=0; i<notif.length; i++){ %>
+            <%= notif[i] %> <br>
+    <% }} %>
+</div>
+
+<div class="container justify-content-center mt-5">
+        <form class = 'card p-3 bg-light' action="/movies/<%= movie.id %>/edit" method="post">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" name="name" value="<%= movie.name %>">
+            </div>
+            <div class="form-group">
+                <label for="released_year">Released Year</label>
+                <input type="number" class="form-control" id="released_year" name="released_year" value="<%= movie.released_year %>">
+            </div>
+            <div class="form-group">
+                <label for="rating">Rating</label>
+                <input type="number" class="form-control" id="rating" name="rating" value="<%= movie.rating %>">
+            </div>
+            <div class="form-group">
+                <label for="genre">Genre</label>
+                <div>
+                    <select class="form-control" name="genre" id="genre">
+                        <option value="action" <% if(movie.genre == "action") { %> selected="selected" <% } %>>Action</option>
+                        <option value="animation" <% if(movie.genre == "animation") { %> selected="selected" <% } %>>Animation</option>
+                        <option value="comedy" <% if(movie.genre == "comedy") { %> selected="selected" <% } %>>Comedy</option>
+                        <option value="drama" <% if(movie.genre == "drama") { %> selected="selected" <% } %>>Drama</option>
+                        <option value="horror" <% if(movie.genre == "horror") { %> selected="selected" <% } %>>Horror</option>
+                        <option value="religious" <% if(movie.genre == "religious") { %> selected="selected" <% } %>>Religious</option>
+                        <option value="thriller" <% if(movie.genre == "thriller") { %> selected="selected" <% } %>>Thriller</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="ProductionHouseId">Production House</label>
+                <div>
+                    <select class="form-control" name="ProductionHouseId" id="ProductionHouseId" >
+                        <option value="">---Select---</option>
+                        <% ProductionHouses.forEach(productionHouse => { %>
+                            <% if (movie.ProductionHouse) { %>
+                                <% if (productionHouse.id === movie.ProductionHouseId) { %>
+                                    <option value="<%= productionHouse.id %>" selected><%= productionHouse.name_prodHouse %></option>
+                                <% } else { %>
+                                    <option value="<%= productionHouse.id %>"><%= productionHouse.name_prodHouse %></option>
+                                <% } %>
+                            <% } else { %>
+                                <option value="<%= productionHouse.id %>"><%= productionHouse.name_prodHouse %></option>
+                            <% } %>
+                        <% }) %>
+                    </select>
+                </div>
+            </div>
+            
+            <button type="submit" class="btn btn-info">Update</button>
+        </form>
+</div>
+
+<div class="d-flex justify-content-center mt-3">
+    <a href="/movies" class="btn btn-outline-info">Cancel</a>
+</div>
+
+
+<%- include('partials/footer.ejs') %>

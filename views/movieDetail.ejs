@@ -1,0 +1,81 @@
+<%- include('partials/header', {title: 'Movie Detail'}) %>
+
+<nav class="navbar navbar-expand-sm bg-info navbar-dark justify-content-center">
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/production-houses">Production Houses</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="/movies">Movies</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/casts">Casts</a>
+        </li>
+    </ul>
+</nav>
+
+<div class="container">
+    <div class="row">
+      <div class="col my-auto">
+        <h1 class="d-flex justify-content-center mt-5"><%= movie.name %></h1>
+      </div>
+      <div class="col">
+        <div class="d-flex justify-content-center mt-3">
+            <% if(notif){ 
+                for(let i=0; i<notif.length; i++){ %>
+                    <%= notif[i] %> <br>
+            <% }} %>
+        </div>
+        <div class="d-flex justify-content-center mt-5">
+            <form class = 'card p-3 bg-light' action="/movies/<%= movie.id %>/add-cast" method="post">
+                <div class="form-group">
+                    <label for="CastId">Cast</label>
+                    <select class="form-control" name="CastId" id="CastId" >
+                        <option value="">---Select---</option>
+                        <% casts.forEach(cast => { %>
+                            <option value="<%= cast.id %>"><%= cast.full_name %></option>
+                        <% }) %>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="role">Role</label>
+                    <input type="text" class="form-control" id="role" name="role" placeholder="e.g: Pemeran utama">
+                </div>        
+                <button type="submit" class="btn btn-info">Add Cast</button>
+            </form>
+        </div>
+        
+        <div class="d-flex justify-content-center mt-3">
+        <a href="/movies" class="btn btn-outline-info">Cancel</a>
+        </div>
+      </div>
+    </div>
+</div>
+
+<h2 class="d-flex justify-content-center mt-5">List Cast</h2>
+
+<div class="row justify-content-center mt-3">
+    <div class="col-auto">
+        <table class="table table-responsive table-bordered">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">Actor</th>
+                    <th scope="col">Role</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for (let i = 0; i < movieCasts.length; i++) { %>
+                    <tr>
+                        <td><%= movieCasts[i].Cast.full_name %></td>
+                        <td><%= movieCasts[i].role %></td>
+                    </tr>
+                    <% } %>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<%- include('partials/footer.ejs') %>

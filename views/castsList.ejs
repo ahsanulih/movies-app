@@ -1,0 +1,87 @@
+<%- include('partials/header', {title: 'Casts List'}) %>
+
+<nav class="navbar navbar-expand-sm bg-info navbar-dark justify-content-center">
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/production-houses">Production Houses</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/movies">Movies</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="/casts">Casts</a>
+        </li>
+    </ul>
+</nav>
+
+<h1 class="d-flex justify-content-center mt-5">Casts List</h1>
+
+<div class="d-flex justify-content-center mt-5">
+    <a href="/casts/add" class="btn btn-outline-success">Add cast</a>
+</div>
+
+<% if(notif) { %>
+    <div class="d-flex justify-content-center mt-3">
+        <p><%= notif %></p>
+    </div>
+<% } %>
+
+<div class="row justify-content-center mt-3">
+    <div class="col-auto">
+        <table class="table table-responsive table-bordered">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Birth Year</th>
+                    <th scope="col">Phone Number</th>
+                    <th scope="col">Gender</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for (let i = 0; i < casts.length; i++) { %>
+                <tr>
+                    <td><%= casts[i].full_name %></td>
+                    <td><%= casts[i].birth_year %></td>
+                    <td><%= casts[i].phone_number %></td>
+                    <td><%= casts[i].gender %></td>
+                    <td>
+                        <a href="/casts/<%= casts[i].id %>/edit" class="btn btn-outline-info">Edit</a>
+                        <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#deleteModal">
+                            Delete
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h5 class="modal-title" id="deleteModalLabel">Modal title</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                </div>
+                                <div class="modal-body">
+                                Apakah benar ingin delete cast?
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="/casts/<%= casts[i].id %>/delete" class="btn btn-outline-info">Delete</a>
+                                    <button type="button" class="btn btn-outline-info" data-dismiss="modal">Cancel</button>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        <a href="/casts/<%= casts[i].id %>/get" class="btn btn-outline-info">See movies</a>
+                    </td>                    
+                </tr>
+                <% } %>             
+            </tbody>
+        </table>
+    </div>
+</div>
+  
+  
+
+<%- include('partials/footer.ejs') %>

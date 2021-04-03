@@ -1,0 +1,43 @@
+<%- include('partials/header', {title: 'Production Houses List'}) %>
+
+<nav class="navbar navbar-expand-sm bg-info navbar-dark justify-content-center">
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="/production-houses">Production Houses</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/movies">Movies</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/casts">Casts</a>
+        </li>
+    </ul>
+</nav>
+
+<h1 class="d-flex justify-content-center mt-5">Production Houses List</h1>
+
+<div class="row justify-content-center mt-5">
+    <div class="col-auto">
+        <table class="table table-responsive table-bordered">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Headquarters</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for (let i = 0; i < prodHouses.length; i++) { %>
+                <tr>
+                    <td><%= prodHouses[i].name_prodHouse %></td>
+                    <td><%= prodHouses[i].headquarters %></td>
+                </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<%- include('partials/footer.ejs') %>

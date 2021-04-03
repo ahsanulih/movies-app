@@ -1,0 +1,51 @@
+<%- include('partials/header', {title: 'Cast Detail'}) %>
+
+<nav class="navbar navbar-expand-sm bg-info navbar-dark justify-content-center">
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/production-houses">Production Houses</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/movies">Movies</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="/casts">Casts</a>
+        </li>
+    </ul>
+</nav>
+
+<h2 class="d-flex justify-content-center mt-5"><%= cast.full_name %></h2>
+
+<div class="row justify-content-center mt-5">
+    <div class="col-auto">
+        <table class="table table-responsive table-bordered">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">Movie</th>
+                    <th scope="col">Released Year</th>
+                    <th scope="col">Age when Movie Released</th>
+                    <th scope="col">Role</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for (let i = 0; i < movieCast.length; i++) { %>
+                    <tr>
+                        <td><%= movieCast[i].Movie.name %></td>
+                        <td><%= movieCast[i].Movie.released_year %></td>
+                        <td><%= movieCast[i].age_when_movie_released %> years old</td>
+                        <td><%= movieCast[i].role %></td>
+                    </tr>
+                    <% } %>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="d-flex justify-content-center mt-3">
+    <a href="/casts" class="btn btn-outline-info">Back</a>
+</div>
+
+<%- include('partials/footer.ejs') %>

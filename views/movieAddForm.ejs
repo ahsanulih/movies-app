@@ -1,0 +1,68 @@
+<%- include('partials/header', {title: 'Add Movie Data'}) %>
+
+<nav class="navbar navbar-expand-sm bg-info navbar-dark justify-content-center">
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/production-houses">Production Houses</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="/movies">Movies</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/casts">Casts</a>
+        </li>
+    </ul>
+</nav>
+
+<h1 class="d-flex justify-content-center mt-5">Add Movie Data</h1>
+
+<div class="d-flex justify-content-center mt-3">
+    <% if(notif){ 
+        for(let i=0; i<notif.length; i++){ %>
+            <%= notif[i] %> <br>
+    <% }} %>
+</div>
+
+<div class="container justify-content-center mt-5">
+        <form class = 'card p-3 bg-light' action="/movies/add" method="post">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="e.g: 12 Angry Men">
+            </div>
+            <div class="form-group">
+                <label for="released_year">Released Year</label>
+                <input type="number" class="form-control" id="released_year" name="released_year" placeholder="e.g: 1957">
+            </div>
+            <div class="form-group">
+                <label for="rating">Rating</label>
+                <input type="number" class="form-control" id="rating" name="rating" placeholder="e.g: 85">
+            </div>
+            <div class="form-group">
+                <label for="genre">Genre</label>
+                <div>
+                    <select class="form-control" name="genre" id="genre">
+                        <option selected value="">Select Genre</option>
+                        <option value="action">Action</option>
+                        <option value="animation">Animation</option>
+                        <option value="comedy">Comedy</option>
+                        <option value="drama">Drama</option>
+                        <option value="horror">Horror</option>
+                        <option value="religious">Religious</option>
+                        <option value="thriller">Thriller</option>
+                    </select>
+                </div>
+            </div>
+            
+            <button type="submit" class="btn btn-info">Add Movie</button>
+        </form>
+</div>
+
+<div class="d-flex justify-content-center mt-3">
+    <a href="/movies" class="btn btn-outline-info">Cancel</a>
+</div>
+
+
+<%- include('partials/footer.ejs') %>

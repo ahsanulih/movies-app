@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "first_name": "John",
+        "last_name": "Doe",
+        "birth_year": "2005",
+        "phone_number": "08123456789",
+        "gender": "male"
+    },
+    {
+        "id": 2,
+        "first_name": "Naomi",
+        "last_name": "Scott",
+        "birth_year": "1980",
+        "phone_number": "08123456789",
+        "gender": "female"
+    },
+    {
+        "id": 3,
+        "first_name": "Tony",
+        "last_name": "Stark",
+        "birth_year": "1999",
+        "phone_number": "08123456789",
+        "gender": "male"
+    }
+]
